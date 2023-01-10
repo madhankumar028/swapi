@@ -52,7 +52,6 @@ const Home = () => {
 
   const [starwarsTeam, setStarwarsTeam] = useLocalStorage("starwarsTeam", {
     characters: [],
-    favouriteCharacters: [],
   });
 
   const fetchCharacters = (searchkey) => {
@@ -102,23 +101,15 @@ const Home = () => {
       .finally(() => setLoadingMore(false));
   };
 
-  const onFavouriteSelection = (character) => {
-    const { favouriteCharacters, characters } = starwarsTeam;
-    const clonedFavourites = [...favouriteCharacters];
+  const onFavouriteSelection = (character, isChecked) => {
+    const { characters } = starwarsTeam;
     const clonedCharacters = [...characters];
-
-    const favouriteIndex = clonedFavourites.findIndex(favourite => (favourite.url === character.url));
     const characterIndex = clonedCharacters.findIndex(clonedCharacter => (clonedCharacter.url === character.url));
-
-    favouriteIndex >= 0
-      ? clonedFavourites.splice(favouriteIndex, 1)
-      : clonedFavourites.push(character);
-
-    clonedCharacters[characterIndex].isFavourite = characterIndex >= 0 ? true : false;
-
+    if (characterIndex >=0 ) {
+      clonedCharacters[characterIndex].isFavourite = isChecked;
+    }
     setStarwarsTeam(prevTeam => ({
       ...prevTeam,
-      favouriteCharacters: clonedFavourites,
       characters: clonedCharacters,
     }));
   };
@@ -166,7 +157,7 @@ const Home = () => {
                 character={character}
                 onClick={() => setSelectedCharacter(character)}
                 key={character.name}
-                onFavouriteSelection={() => onFavouriteSelection(character)}
+                onFavouriteSelection={(isChecked) => onFavouriteSelection(character, isChecked)}
               />
             ))
           )}

@@ -18,10 +18,10 @@ const Favourite = ({ onFavouriteSelection, isFavourite }) => {
   const styles = useStyles();
 
   return (
-    <Paper className={styles.star} title="Add to your Favourites" onClick={(e) => {
-      e.stopPropagation();
+    <Paper className={styles.star} title="Add to your Favourites" onClick={(event) => {
+      event.stopPropagation();
       setFavouriteCharacter(!isFavouriteCharacter);
-      onFavouriteSelection();
+      onFavouriteSelection(!isFavouriteCharacter);
     }}>
       { isFavourite ? <Star /> : <StarBorder /> }
     </Paper>
