@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-import { Button, Switch, makeStyles } from "@material-ui/core";
+import { Button, Switch, makeStyles, createStyles } from "@material-ui/core";
 import { debounce } from 'lodash';
 
 import { CharacterCard, NoResults, ServerError, SearchBar, CharacterLoadingCard } from "../../components/common";
@@ -8,7 +8,7 @@ import CharacterDialog from "../../components/CharacterDialog";
 
 import { useSmallScreen, useLocalStorage } from "../../hooks";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(() => createStyles({
   container: {
     display: "flex",
     flexDirection: "column",
@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
   },
   switchLabel: {
-    fontWeight: "600",
+    fontWeight: "bold",
     fontSize: "16px",
     color: "#6e7781",
   },
@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
   },
   loadMore: {
-    fontWeight: "600",
+    fontWeight: "bold",
     margin: "20px 0",
     background: "linear-gradient(180deg, rgba(183, 52, 179, 0.15) 0%, rgba(164, 46, 156, 0) 100%), #6e40c9",
   },
@@ -128,7 +128,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    fetchCharacters();
+    fetchCharacters('');
   }, []);
 
   useEffect(() => {
@@ -148,7 +148,7 @@ const Home = () => {
             checked={isFavouriteView}
             onChange={toggleFavouriteView}
             inputProps={{ 'aria-label': 'controlled' }}
-            color="warning"
+            color="default"
           />
           <label className={styles.switchLabel}>My Favourites</label>
         </div>

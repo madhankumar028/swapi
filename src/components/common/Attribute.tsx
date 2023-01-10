@@ -1,12 +1,11 @@
-import React from "react";
-import { CircularProgress, makeStyles } from "@material-ui/core";
+import { CircularProgress, makeStyles, createStyles } from "@material-ui/core";
 
 import { useGetAll } from "../../hooks";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => createStyles({
   field: {
     color: "#8b949e",
-    fontWeight: "600",
+    fontWeight: "bold",
     marginRight: 5,
   },
   fieldContainer: {

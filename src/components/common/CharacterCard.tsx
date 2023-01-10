@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import { makeStyles, Paper } from "@material-ui/core";
+import { makeStyles, createStyles, Paper } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 
 import { Attribute } from "./Attribute";
 import { Favourite } from "./Favourite";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(() => createStyles({
   container: {
     position: "relative",
     padding: "10px 20px",
@@ -19,14 +19,20 @@ const useStyles = makeStyles(() => ({
   title: {
     margin: "5px 0",
     fontSize: 20,
-    fontWeight: "600",
+    fontWeight: "bold",
   },
 }));
 
 const CharacterLoadingCard = ({ amount = 1 }) => {
-  return [...Array(amount)].map((value, i) => (
-    <Skeleton style={{ margin: 10, borderRadius: 4 }} key={i} variant="rect" height={193} width={300} />
-  ));
+  return (
+    <>
+      {
+        [...Array(amount)].map((_value, i) => (
+          <Skeleton style={{ margin: 10, borderRadius: 4 }} key={i} variant="rect" height={193} width={300} />
+        ))
+      }
+    </>
+  )
 };
 
 const CharacterCard = ({ character, onClick, onFavouriteSelection }) => {

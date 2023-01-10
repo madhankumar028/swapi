@@ -1,6 +1,7 @@
-import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
-import React from "react";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+
+import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
+
 import Home from "./screens/Home/Home";
 import { Header } from "./components/common";
 import { darkTheme } from "./theme";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useGetAll = (data, arrayName) => {
-  const [results, setResults] = useState(null);
+  const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

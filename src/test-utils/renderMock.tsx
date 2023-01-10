@@ -1,13 +1,12 @@
-import React from "react";
-import { render as testingRender } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { render as testingRender } from "@testing-library/react";
 import { MuiThemeProvider } from "@material-ui/core";
-import { lightTheme } from "../theme";
+import { darkTheme } from "../theme";
 
 const render = (ui, renderOptions) => {
   const Wrapper = ({ children }) => (
     <Router>
-      <MuiThemeProvider theme={lightTheme}>{children}</MuiThemeProvider>
+      <MuiThemeProvider theme={darkTheme}>{children}</MuiThemeProvider>
     </Router>
   );
 

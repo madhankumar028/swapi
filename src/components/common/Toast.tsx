@@ -1,4 +1,5 @@
-import React from "react";
+import React, { MouseEvent } from 'react';
+
 import Alert from "@material-ui/lab/Alert/Alert";
 import Snackbar from "@material-ui/core/Snackbar/Snackbar";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -9,7 +10,22 @@ const styles = () => ({
   },
 });
 
-const Toast = withStyles(styles)(props => {
+interface IAnchor {
+  vertical: 'top' | 'bottom';
+  horizontal: 'left' | 'center' | 'right';
+};
+
+interface IToast {
+  open: boolean;
+  duration: number;
+  onClose(e: MouseEvent<HTMLElement>): void;
+  anchor: IAnchor;
+  text: string;
+  type: 'success' | 'info' | 'warning' | 'error';
+  style: React.CSSProperties;
+};
+
+const Toast = withStyles(styles)((props: IToast) => {
   const {
     open,
     duration = 6000,
@@ -18,12 +34,11 @@ const Toast = withStyles(styles)(props => {
     text,
     type,
     style,
-    classes,
   } = props;
 
   return open ? (
     <Snackbar open={open} autoHideDuration={duration} onClose={onClose} anchorOrigin={anchor}>
-      <Alert variant="filled" onClose={onClose} severity={type} style={style} classes={{ icon: classes.icon }}>
+      <Alert variant="filled" onClose={onClose} severity={type} style={style}>
         {text}
       </Alert>
     </Snackbar>
