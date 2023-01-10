@@ -1,9 +1,8 @@
-import React from "react";
-import { InputBase, makeStyles, Paper } from "@material-ui/core";
+import { InputBase, makeStyles, createStyles, Paper } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import { useSmallScreen } from "../../hooks";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(() => createStyles({
   container: {
     display: "flex",
     alignItems: "center",

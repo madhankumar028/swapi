@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-import { makeStyles, Paper } from "@material-ui/core";
+import { makeStyles, Paper, createStyles } from "@material-ui/core";
 import { Star, StarBorder } from "@material-ui/icons";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(() => createStyles({
   star: {
     position: "absolute",
     right: "10px",

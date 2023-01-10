@@ -1,8 +1,7 @@
-import React from "react";
 import { FindInPage } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, createStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => createStyles({
   container: {
     display: "flex",
     width: 250,
@@ -20,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     color: "gray",
     marginTop: 10,
     marginBottom: 0,
-    fontWeight: "600",
+    fontWeight: "bold",
     fontSize: 16,
   },
   text: {

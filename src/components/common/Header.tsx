@@ -1,9 +1,8 @@
-import React from "react";
-import { AppBar, makeStyles, Toolbar } from "@material-ui/core";
+import { AppBar, makeStyles, createStyles, Toolbar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useSmallScreen } from "../../hooks";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => createStyles({
   header: {
     position: "fixed",
     top: "0",
@@ -22,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     textDecoration: "none",
     color: "#DBA90C",
     textTransform: "uppercase",
-    fontWeight: "600",
+    fontWeight: "bold",
     fontSize: 15,
   },
   icon: {
