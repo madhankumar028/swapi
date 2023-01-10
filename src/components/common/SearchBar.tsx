@@ -29,11 +29,14 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-const SearchBar = ({ searchHandler }) => {
+const SearchBar = ({ searchHandler, isFavouriteView }) => {
   const styles = useStyles();
   const [smallScreen] = useSmallScreen();
   return (
-    <Paper className={styles.container}>
+    <Paper
+      className={styles.container}
+      style={{ opacity: isFavouriteView ? "0.1" : "1" }}
+    >
       <div className={styles.inputContainer}>
         <Search className={styles.searchIcon} />
         <InputBase

@@ -16,6 +16,7 @@ const useStyles = makeStyles(() => createStyles({
     justifyContent: "center",
     marginTop: "64px",
     backgroundImage: "url('https://github.githubassets.com/images/modules/site/home-campaign/hero-bg-2x.webp')",
+    minHeight: "calc(100vh - 70px)"
   },
   switchWrapper: {
     display: "flex",
@@ -156,9 +157,10 @@ const Home = () => {
   return (
     <>
       <div className={styles.container}>
-        <h1>Starwars Characters</h1>
+        <h1>Starwars {isFavouriteView ? 'Favourite Characters' : 'Characters'}</h1>
         <SearchBar
           searchHandler={debounceSearch}
+          isFavouriteView={isFavouriteView}
         />
         <div className={styles.switchWrapper}>
           <Switch
@@ -172,7 +174,7 @@ const Home = () => {
         <div
           className={styles.results}
           style={{
-            'gridTemplateColumns' : (smallScreen || !starwarsTeam?.characters?.length || isFavouriteView) ? '1fr' : '1fr 1fr 1fr'
+            'gridTemplateColumns' : (smallScreen || !starwarsTeam?.characters?.length) ? '1fr' : '1fr 1fr 1fr'
           }}
         >
           {
