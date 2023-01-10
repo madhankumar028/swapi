@@ -114,6 +114,32 @@ const Home = () => {
     }));
   };
 
+  const getCharacterView = (list) => {
+    let characters = list;
+
+    if (isFavouriteView) {
+      characters = characters.filter(character => character.isFavourite);
+    }
+
+    if (!list.length || !characters.length) {
+      return (
+        <NoResults
+          title={`No ${isFavouriteView ? 'Favourites' : 'Characters'} found`}
+          text={`We cannot find the ${isFavouriteView ? 'Favourites' : 'Characters'} you are searching for.`}
+        />
+      )
+    }
+
+    return characters.map(character => (
+      <CharacterCard
+        character={character}
+        onClick={() => setSelectedCharacter(character)}
+        key={character.name}
+        onFavouriteSelection={(isChecked) => onFavouriteSelection(character, isChecked)}
+      />
+    ))
+  }
+
   const toggleFavouriteView = () => {
     setFavouriteView(!isFavouriteView);
   }
@@ -145,25 +171,18 @@ const Home = () => {
         </div>
         <div
           className={styles.results}
-          style={{ 'gridTemplateColumns' : (smallScreen || !starwarsTeam?.characters?.length) ? '1fr' : '1fr 1fr 1fr'}}
+          style={{
+            'gridTemplateColumns' : (smallScreen || !starwarsTeam?.characters?.length || isFavouriteView) ? '1fr' : '1fr 1fr 1fr'
+          }}
         >
-          {loading ? (
-            <CharacterLoadingCard amount={10} />
-          ) : starwarsTeam?.characters?.length === 0 ? (
-            <NoResults title="No characters found" text="We cannot find the character you are searching for." />
-          ) : (
-            starwarsTeam?.characters.map(character => (
-              <CharacterCard
-                character={character}
-                onClick={() => setSelectedCharacter(character)}
-                key={character.name}
-                onFavouriteSelection={(isChecked) => onFavouriteSelection(character, isChecked)}
-              />
-            ))
-          )}
-          {loadingMore && <CharacterLoadingCard amount={5} />}
+          {
+            loading
+              ? ( <CharacterLoadingCard amount={10} /> )
+              : getCharacterView(starwarsTeam?.characters)
+          }
+          {!isFavouriteView && loadingMore && <CharacterLoadingCard amount={5} />}
         </div>
-        {data?.next && !loading && !loadingMore && (
+        {(!isFavouriteView && (data?.next && !loading && !loadingMore)) && (
           <Button onClick={getMore} className={styles.loadMore}>
             Load more characters
           </Button>
