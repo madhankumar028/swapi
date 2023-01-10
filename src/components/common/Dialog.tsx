@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Dialog as MuiDialog,
   DialogContent,
@@ -7,23 +6,24 @@ import {
   makeStyles,
   useMediaQuery,
   useTheme,
+  createStyles,
 } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(() => createStyles({
   titleContainer: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
   },
   title: {
-    fontWeight: "600",
+    fontWeight: "bold",
     margin: 0,
     fontSize: 22,
   },
 }));
 
-const DialogTitle = ({ children, classes, onClose, style, ...other }) => {
+const DialogTitle = ({ children, onClose, style, ...other }) => {
   const styles = useStyles();
   return (
     <MuiDialogTitle disableTypography {...other} style={{ paddingBottom: 0, ...style }}>

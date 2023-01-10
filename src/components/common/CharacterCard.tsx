@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { makeStyles, createStyles, Paper } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
