@@ -151,7 +151,7 @@ const Home = () => {
     return () => {
       setData(null);
     };
-  }, []);
+  }, [fetchCharacters]);
 
   useEffect(() => {
     if (selectedCharacter) setOpenCharacterDialog(true);
