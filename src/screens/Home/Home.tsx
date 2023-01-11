@@ -7,6 +7,7 @@ import { CharacterCard, NoResults, ServerError, SearchBar, CharacterLoadingCard 
 import CharacterDialog from "../../components/CharacterDialog";
 
 import { useSmallScreen, useLocalStorage } from "../../hooks";
+import { IStarwarsResponse } from "./types"
 
 const useStyles = makeStyles(() => createStyles({
   container: {
@@ -42,7 +43,7 @@ const useStyles = makeStyles(() => createStyles({
 
 const Home = () => {
   const styles = useStyles();
-  const [data, setData] = useState({});
+  const [data, setData] = useState<IStarwarsResponse>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -148,7 +149,7 @@ const Home = () => {
   useEffect(() => {
     fetchCharacters('');
     return () => {
-      setData({});
+      setData(null);
     };
   }, []);
 
