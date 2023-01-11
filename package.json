@@ -39,7 +39,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm run clean && react-scripts build",
+    "build": "react-scripts build",
     "test": "jest --detectOpenHandles",
     "eject": "react-scripts eject",
     "clean": "rm -r ./build"
