@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import { Button, Switch, makeStyles, createStyles } from "@material-ui/core";
 import { debounce } from 'lodash';
@@ -56,7 +56,7 @@ const Home = () => {
     characters: [],
   });
 
-  const fetchCharacters = (searchkey) => {
+  const fetchCharacters =  useCallback((searchkey) => {
     const endpoint = searchkey ? `?search=${searchkey}` : "";
     setError(false);
     setLoading(true);
@@ -77,7 +77,7 @@ const Home = () => {
         setError(true);
       })
       .finally(() => setLoading(false));
-  };
+  }, [setStarwarsTeam]);
 
   const debounceSearch = debounce(fetchCharacters, 500);
 
