@@ -2,6 +2,12 @@ import { CircularProgress, makeStyles, createStyles } from "@material-ui/core";
 
 import { useGetAll } from "../../hooks";
 
+interface IArrayData {
+  data: Object[];
+  arrayName: string;
+  field: string;
+};
+
 const useStyles = makeStyles(() => createStyles({
   field: {
     color: "#8b949e",
@@ -35,24 +41,30 @@ const Attribute = ({ field, value }) => {
   );
 };
 
-const ArrayData = ({ data, arrayName, field }) => {
+const ArrayData = (props: IArrayData) => {
+  const { data, arrayName, field } = props;
   const styles = useStyles();
   const [results, loading] = useGetAll(data, arrayName);
+
+  const getAttributeList = () => {
+    if (results instanceof Array) {
+      return results.map(item => item[field]).join(", ");
+    };
+    return "-";
+  };
 
   return (
     <div className={styles.fieldContainer}>
       <span className={styles.field}>{arrayName.toUpperCase()}: </span>
       <span>
-        {loading ? (
-          <>
-            <CircularProgress size={16} style={{ marginLeft: 10 }} />
-            <span style={{ marginLeft: 10 }}>Loading {arrayName}...</span>
-          </>
-        ) : results ? (
-          results.map(item => item[field]).join(", ")
-        ) : (
-          "-"
-        )}
+        {
+          loading ? (
+            <>
+              <CircularProgress size={16} style={{ marginLeft: 10 }} />
+              <span style={{ marginLeft: 10 }}>Loading {arrayName}...</span>
+            </>
+          ) : getAttributeList()
+        }
       </span>
     </div>
   );

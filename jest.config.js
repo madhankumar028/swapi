@@ -1,16 +1,21 @@
-module.exports = {
+import {defaults} from 'jest-config';
+
+const config = {
   rootDir: "src",
-  moduleFileExtensions: ["js", "jsx"],
+  moduleFileExtensions: [...defaults.moduleFileExtensions, "ts", "tsx"],
   moduleDirectories: ["node_modules"],
   moduleNameMapper: {
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
       "<rootDir>/mocks/file.mock.ts",
-    "\\.(css|less)$": "identity-obj-proxy",
   },
-  setupFiles: ["<rootDir>/test-utils/envs.js"],
-  setupFilesAfterEnv: ["<rootDir>/test-utils/setupTests.js"],
+  setupFiles: ["<rootDir>/test-utils/envs.ts"],
+  setupFilesAfterEnv: ["<rootDir>/test-utils/setupTests.ts"],
   resetMocks: true,
   transform: {
-    "^.+\\.jsx?$": "babel-jest",
+    "^.+\\.tsx?$": "babel-jest",
   },
+  testEnvironment: 'jsdom',
+  testURL: "http://localhost/",
 };
+
+export default config;

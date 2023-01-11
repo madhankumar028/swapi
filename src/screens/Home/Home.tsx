@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => createStyles({
 
 const Home = () => {
   const styles = useStyles();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -147,6 +147,9 @@ const Home = () => {
 
   useEffect(() => {
     fetchCharacters('');
+    return () => {
+      setData({});
+    };
   }, []);
 
   useEffect(() => {

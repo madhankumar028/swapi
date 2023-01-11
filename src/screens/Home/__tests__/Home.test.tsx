@@ -1,16 +1,15 @@
-import React from "react";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Home from "../Home";
 import { render } from "../../../test-utils/renderMock";
 
-const component = () => render(<Home />);
+const component = () => render(<Home />, {});
 
 describe("Home test suite", () => {
   it("Renders correctly", async () => {
     component();
 
-    expect(screen.getByText("List of characters")).toBeVisible();
+    expect(screen.getByText("Starwars Characters")).toBeVisible();
     await waitFor(() => expect(screen.getByText("Luke Skywalker")).toBeVisible());
   });
 
